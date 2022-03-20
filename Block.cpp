@@ -73,7 +73,7 @@ vector<vector<Block>> Block::GenerateBlocks(int blocksAmount, float windowWidth)
 
 	vector<vector<Block>> blocks;
 
-	for (int i = 0; i < numberOfRows; i += 1)
+	for (int i = 0; i < numberOfRows; i++)
 	{
 		vector<Block> row;
 		for (int j = 0; j < blocksByRow; j++)

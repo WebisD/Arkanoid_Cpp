@@ -325,7 +325,8 @@ void Game::InitializeVariables() {
 	firstPlayerScore = 0;
 	secondPlayerScore = 0;
 
-	blocks = Block::GenerateBlocks(80 , *windowWidth);
+	int blocksAmount = 80;
+	blocks = Block::GenerateBlocks(blocksAmount , *windowWidth);
 
 	SDL_SetWindowTitle(window, "Arkanoid");
 }
