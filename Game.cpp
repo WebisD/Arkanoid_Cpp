@@ -8,6 +8,7 @@
 
 #include "Game.h"
 #include <iostream>
+#include "Block.h"
 
 int* windowWidth, * windowHeight;
 Uint32 startTiming, endTiming;
@@ -324,7 +325,9 @@ void Game::InitializeVariables() {
 	firstPlayerScore = 0;
 	secondPlayerScore = 0;
 
-	SDL_SetWindowTitle(window, "P.O.N.G");
+	blocks = Block::GenerateBlocks(80 , *windowWidth);
+
+	SDL_SetWindowTitle(window, "Arkanoid");
 }
 
 void Game::ResetGame() 
@@ -337,29 +340,6 @@ void Game::ResetGame()
 
 void Game::CheckBallCollisionWithWalls(Ball* ball)
 {
-	/* (ball->position.x <= 0.0f)
-	{
-		SDL_Log("ball position less than 0.0f: (%.2f, %.2f)", ball->position.x, ball->position.y);
-		//isRunning = false;
-		secondPlayerScore += 1;
-		ball->velocity.x *= -1.0f;
-	}
-
-	if (gameMode == GameMode::MultiPlayer) {
-		if (ball->position.x >= *windowWidth)
-		{
-			//isRunning = false;
-			firstPlayerScore += 1;
-			ball->velocity.x *= -1.0f;
-		}
-	}
-	else if (gameMode == GameMode::SinglePlayer) {
-		if (ball->position.x >= (*windowWidth - firstPaddle.width) && ball->velocity.x > 0.0f)
-		{
-			ball->velocity.x *= -1.0f;
-		}
-	*/
-
 	bool hasCollidedWithTopWall = ball->position.y + ball->radius >= *windowHeight;
 	bool hasCollidedWithBottomWall = ball->position.y < 0;
 
@@ -367,12 +347,9 @@ void Game::CheckBallCollisionWithWalls(Ball* ball)
 	bool hasCollidedWithLeftWall = ball->position.x <= 0;
 
 	if (hasCollidedWithTopWall || hasCollidedWithBottomWall)
-	{
 		ball->velocity.y *= -1;
-	}
 
-	if (hasCollidedWithLeftWall || hasCollidedWithRightWall)
-	{
+	if (hasCollidedWithLeftWall || hasCollidedWithRightWall) {
 		ball->velocity.x *= -1;
 	}
 }
@@ -383,9 +360,8 @@ void Game::UpdateGame()
 
 	float deltaTime = (SDL_GetTicks() - ticksCount) / 1000.0f;
 
-	if (deltaTime > 0.05f) {
+	if (deltaTime > 0.05f)
 		deltaTime = 0.05f;
-	}
 
 	ticksCount = SDL_GetTicks();
 
@@ -413,9 +389,8 @@ void Game::UpdateGame()
 
 			CheckBallCollisionWithWalls(&ball);
 
-			for (auto& collidedBall : balls) {
+			for (auto& collidedBall : balls)
 				ball.CheckCollisionWithAnotherBall(&collidedBall);
-			}
 		}
 
 	}
@@ -432,9 +407,7 @@ void Game::UpdateGame()
 				UpdatePaddle(paddle, deltaTime);
 
 				if (ball.DidCollideWithPaddle(paddle))
-				{
 					ball.InvertVelocityOnPaddleCollide(paddle, true);
-				}
 
 				UpdateScoreBoard(firstPlayerScore, secondPlayerScore);
 
@@ -442,9 +415,7 @@ void Game::UpdateGame()
 				bool secondPlayerWon = secondPlayerScore > 0 && secondPlayerScore % 3 == 0;
 
 				if (firstPlayerWon || secondPlayerWon)
-				{
 					ResetGame();
-				}
 			}
 
 			CheckBallCollisionWithWalls(&ball);
@@ -455,25 +426,34 @@ void Game::UpdateGame()
 
 void Game::GenerateOutput()
 {
-	if (gameMode == GameMode::None) {
+	if (gameMode == GameMode::None) 
 		return;
-	}
 
 	SDL_SetRenderDrawColor(renderer, 0x00, 0x00, 0x00, 0x00);
 	SDL_RenderClear(renderer);
 	SDL_RenderCopy(renderer, fieldTexture, NULL, NULL);
 
-	if (gameMode == GameMode::SinglePlayer) {
+	if (gameMode == GameMode::SinglePlayer) 
 		firstPaddle.Draw(renderer);
-	}
-	else if (gameMode == GameMode::MultiPlayer) {
+
+	else if (gameMode == GameMode::MultiPlayer) 
+	{
 		firstPaddle.Draw(renderer);
 		secondPaddle.Draw(renderer);
 	}
 
-	for (auto& ball : balls) {
+	
+	for (auto& ball : balls) 
 		ball.Draw(renderer);
+	
+	for (auto& blockRow : blocks)
+	{
+		for (auto& block : blockRow)
+		{
+			block.Draw(renderer);
+		}
 	}
+
 	SDL_RenderPresent(renderer);
 }
 

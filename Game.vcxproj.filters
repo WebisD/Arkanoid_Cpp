@@ -27,12 +27,10 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Game.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="Ball.h" />
     <ClInclude Include="Paddle.h" />
     <ClInclude Include="Utils.h" />
     <ClInclude Include="Block.h" />
+    <ClInclude Include="Game.h" />
   </ItemGroup>
 </Project>

@@ -14,6 +14,7 @@
 #include <math.h>
 #include "Paddle.h"
 #include "Ball.h"
+#include "Block.h"
 #include "Utils.h"
 
 using namespace std;
@@ -76,6 +77,7 @@ private:
 	Paddle firstPaddle;
 	Paddle secondPaddle;
 	vector<Ball> balls;
+	vector<vector<Block>> blocks;
 	int firstPlayerScore, secondPlayerScore;
 
 	std::string menuBitmapName;

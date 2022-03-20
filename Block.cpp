@@ -1,4 +1,5 @@
 #include "Block.h"
+#include <math.h>
 
 Block::Block(
 	Vector2 position,
@@ -22,15 +23,31 @@ void Block::Draw(SDL_Renderer* renderer) {
 		color.z
 	);
 
-	SDL_Rect ball{
+
+	SDL_Rect block{
 		static_cast<int>(position.x),
 		static_cast<int>(position.y),
-		width,
-		height
+		static_cast<int>(width),
+		static_cast<int>(height)
+	};
+
+	/*SDL_Rect block2{
+		static_cast<int>(position.x),
+		static_cast<int>(position.y),
+		static_cast<int>(1),
+		static_cast<int>(60)
+	};
+
+	SDL_Rect block2{
+	static_cast<int>(position.x + width - 0.3),
+	static_cast<int>(position.y + height),
+	static_cast<int>(1),
+	static_cast<int>(60)
 	};
 
 
-	SDL_RenderFillRect(renderer, &ball);
+	SDL_RenderFillRect(renderer, &block2);
+	*/SDL_RenderFillRect(renderer, &block);
 }
 
 bool Block::DidCollideWithBall(Ball* ball)
@@ -45,15 +62,39 @@ bool Block::DidCollideWithBall(Ball* ball)
 
 	return hasCollided;
 }
-
-vector<Block> Block::GenerateBlocks(int blocksAmount, int windowWidth)
+vector<vector<Block>> Block::GenerateBlocks(int blocksAmount, float windowWidth)
 {
 	float topMargin = 40.0f;
+	
+	int blocksByRow = windowWidth / blocksAmount;
+	float blockWidth = windowWidth / blocksByRow;
+	int numberOfRows = ceil((float)blocksAmount / (float)blocksByRow);
+	float gapBetweenBlocks = 1.0f;
 
-	int blocksAmountByRow = windowWidth / blocksAmount;
-	vector<Block> blocks;
+	vector<vector<Block>> blocks;
 
+	for (int i = 0; i < numberOfRows; i += 1)
+	{
+		vector<Block> row;
+		for (int j = 0; j < blocksByRow; j++)
+		{
+			float rowsAmount = blocks.size();
+			float positionX = 0.0f;
+			float positionY = rowsAmount * (defaultBlockHeight+ gapBetweenBlocks)*2;
 
-	return nullptr;
+			if (!row.empty())
+			{
+				Block lastBlock = row.back();
+				positionX = lastBlock.position.x + blockWidth + gapBetweenBlocks;
+			}
+
+			Block newBlock = Block(Vector2(positionX, positionY), blockWidth);
+			row.push_back(newBlock);
+		}
+
+		blocks.push_back(row);
+	}
+
+	return blocks;
 }
 

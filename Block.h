@@ -6,18 +6,23 @@
 #include "Ball.h"
 #include <vector>
 
+using namespace std;
+
+const float defaultBlockHeight = 8.0f;
+const float defaultBlockWidth = 16.0f;
+
 class Block
 {
 public:
 	Block(
 		Vector2 position = Vector2::Zero(),
-		float width = 0.0f,
-		float height = 0.0f,
+		float width = defaultBlockHeight,
+		float height = defaultBlockWidth,
 		Vector4 color = Vector4(255, 255, 0, 255)
 	);
 	void Draw(SDL_Renderer* renderer);
 	bool DidCollideWithBall(Ball* ball);
-	vector<Block> GenerateBlocks(int blocksAmount, int windowWidth);
+	static vector<vector<Block>> GenerateBlocks(int blocksAmount, float windowWidth);
 
 	Vector2 position;
 	float width;
