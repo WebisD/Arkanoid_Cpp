@@ -1,11 +1,3 @@
-// ----------------------------------------------------------------
-// From Game Programming in C++ by Sanjay Madhav
-// Copyright (C) 2017 Sanjay Madhav. All rights reserved.
-// 
-// Released under the BSD License
-// See LICENSE in root directory for full details.
-// ----------------------------------------------------------------
-
 #include "Game.h"
 #include <iostream>
 #include "Block.h"
@@ -262,24 +254,6 @@ void Game::ProcessInput()
 	}
 }
 
-
-void Game::UpdatePaddle(Paddle* paddle, float deltaTime)
-{
-	if (paddle->direction.x != 0)
-	{
-		paddle->position.x += paddle->direction.x * paddle->speed * paddle->speedFactor * deltaTime;
-		
-		if (paddle->position.x < 0)
-		{
-			paddle->position.x = 0;
-		}
-		else if (paddle->position.x + paddle->width > *windowWidth)
-		{
-			paddle->position.x = *windowWidth - paddle->width;
-		}
-	}
-}
-
 void Game::UpdateScoreBoard(int firstPlayerScore, int secondPlayerScore)
 {
 	string newTitle = "Jogador 01: " + to_string(firstPlayerScore);
@@ -325,7 +299,7 @@ void Game::InitializeVariables() {
 	firstPlayerScore = 0;
 	secondPlayerScore = 0;
 
-	int blocksAmount = 80;
+	int blocksAmount = 73;
 	blocks = Block::GenerateBlocks(blocksAmount , *windowWidth);
 
 	SDL_SetWindowTitle(window, "Arkanoid");
@@ -337,22 +311,6 @@ void Game::ResetGame()
 	gameMode = GameMode::None;
 	InitializeVariables();
 	Game::LoadBackground();
-}
-
-void Game::CheckBallCollisionWithWalls(Ball* ball)
-{
-	bool hasCollidedWithTopWall = ball->position.y + ball->radius >= *windowHeight;
-	bool hasCollidedWithBottomWall = ball->position.y < 0;
-
-	bool hasCollidedWithRightWall = ball->position.x + ball->radius >= *windowWidth;
-	bool hasCollidedWithLeftWall = ball->position.x <= 0;
-
-	if (hasCollidedWithTopWall || hasCollidedWithBottomWall)
-		ball->velocity.y *= -1;
-
-	if (hasCollidedWithLeftWall || hasCollidedWithRightWall) {
-		ball->velocity.x *= -1;
-	}
 }
 
 void Game::UpdateGame()
@@ -370,7 +328,7 @@ void Game::UpdateGame()
 	secondsElapsed = (endTiming - startTiming) / 1000.f;
 
 	if (gameMode == GameMode::SinglePlayer) {
-		UpdatePaddle(&firstPaddle, deltaTime);
+		firstPaddle.UpdatePaddle(deltaTime, *windowHeight, *windowWidth);
 
 		for (auto& ball : balls) {
 			ball.position.x += ball.velocity.x * ball.speed * deltaTime;
@@ -388,7 +346,7 @@ void Game::UpdateGame()
 				}
 			}
 
-			CheckBallCollisionWithWalls(&ball);
+			ball.CheckBallCollisionWithWalls(*windowHeight, *windowWidth);
 
 			for (auto& collidedBall : balls)
 				ball.CheckCollisionWithAnotherBall(&collidedBall);
@@ -405,7 +363,7 @@ void Game::UpdateGame()
 
 			for (auto& paddle : paddles)
 			{
-				UpdatePaddle(paddle, deltaTime);
+				paddle->UpdatePaddle(deltaTime, *windowWidth, *windowWidth);
 
 				if (ball.DidCollideWithPaddle(paddle))
 					ball.InvertVelocityOnPaddleCollide(paddle, true);
@@ -419,7 +377,7 @@ void Game::UpdateGame()
 					ResetGame();
 			}
 
-			CheckBallCollisionWithWalls(&ball);
+			ball.CheckBallCollisionWithWalls(*windowHeight, *windowWidth);
 		}
 
 	}

@@ -111,3 +111,18 @@ void Ball::CheckCollisionWithAnotherBall(Ball* ball)
 	}
 }
 
+void Ball::CheckBallCollisionWithWalls(float windowHeight, float windowWidth)
+{
+	bool hasCollidedWithTopWall = position.y + radius >= windowHeight;
+	bool hasCollidedWithBottomWall = position.y < 0;
+
+	bool hasCollidedWithRightWall = position.x + radius >= windowWidth;
+	bool hasCollidedWithLeftWall = position.x <= 0;
+
+	if (hasCollidedWithTopWall || hasCollidedWithBottomWall)
+		velocity.y *= -1;
+
+	if (hasCollidedWithLeftWall || hasCollidedWithRightWall)
+		velocity.x *= -1;
+}
+

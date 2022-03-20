@@ -26,7 +26,22 @@ Paddle::Paddle(
 	);
 }
 
-void Paddle::Draw(SDL_Renderer* renderer) {
+void Paddle::UpdatePaddle(float deltaTime, float windowHeight, float windowWidth)
+{
+	if (direction.x != 0)
+	{
+		position.x += direction.x * speed * speedFactor * deltaTime;
+
+		if (position.x < 0)
+			position.x = 0;
+
+		else if (position.x + width > windowWidth)
+			position.x = windowWidth - width;
+	}
+}
+
+void Paddle::Draw(SDL_Renderer* renderer) 
+{
 	SDL_SetRenderDrawColor(
 		renderer,
 		color.x,

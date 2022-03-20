@@ -31,23 +31,7 @@ void Block::Draw(SDL_Renderer* renderer) {
 		static_cast<int>(height)
 	};
 
-	/*SDL_Rect block2{
-		static_cast<int>(position.x),
-		static_cast<int>(position.y),
-		static_cast<int>(1),
-		static_cast<int>(60)
-	};
-
-	SDL_Rect block2{
-	static_cast<int>(position.x + width - 0.3),
-	static_cast<int>(position.y + height),
-	static_cast<int>(1),
-	static_cast<int>(60)
-	};
-
-
-	SDL_RenderFillRect(renderer, &block2);
-	*/SDL_RenderFillRect(renderer, &block);
+	SDL_RenderFillRect(renderer, &block);
 }
 
 bool Block::DidCollideWithBall(Ball* ball)

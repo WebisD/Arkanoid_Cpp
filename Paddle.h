@@ -15,6 +15,7 @@ public:
 	);
 	void Draw(SDL_Renderer* renderer);
 
+	void UpdatePaddle(float deltaTime, float windowHeight, float windowWidth);
 
 	Vector2 position;
 	float height;

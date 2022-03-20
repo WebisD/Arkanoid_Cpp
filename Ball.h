@@ -19,7 +19,9 @@ public:
 	void Draw(SDL_Renderer* renderer);
 	bool DidCollideWithPaddle(Paddle* paddle);
 	void CheckCollisionWithAnotherBall(Ball* ball);
+	void CheckBallCollisionWithWalls(float windowHeight);
 	void InvertVelocityOnPaddleCollide(Paddle* paddle, bool hasToUpdateSpeed);
+	void CheckBallCollisionWithWalls(float windowHeight, float windowWidth);
 
 
 	Vector2 position;
