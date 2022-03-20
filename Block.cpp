@@ -71,8 +71,9 @@ vector<vector<Block>> Block::GenerateBlocks(int blocksAmount, float windowWidth)
 	int numberOfRows = ceil((float)blocksAmount / (float)blocksByRow);
 	float gapBetweenBlocks = 1.0f;
 
-	vector<vector<Block>> blocks;
+	int computedBlocks = 0;
 
+	vector<vector<Block>> blocks;
 	for (int i = 0; i < numberOfRows; i++)
 	{
 		vector<Block> row;
@@ -90,6 +91,8 @@ vector<vector<Block>> Block::GenerateBlocks(int blocksAmount, float windowWidth)
 
 			Block newBlock = Block(Vector2(positionX, positionY), blockWidth);
 			row.push_back(newBlock);
+
+			if (++computedBlocks >= blocksAmount) break;
 		}
 
 		blocks.push_back(row);
