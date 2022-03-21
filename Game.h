@@ -1,11 +1,3 @@
-// ----------------------------------------------------------------
-// From Game Programming in C++ by Sanjay Madhav
-// Copyright (C) 2017 Sanjay Madhav. All rights reserved.
-// 
-// Released under the BSD License
-// See LICENSE in root directory for full details.
-// ----------------------------------------------------------------
-
 #pragma once
 #include "SDL/SDL.h"
 #include <stdio.h>
@@ -19,11 +11,8 @@
 
 using namespace std;
 
-
 enum class GameState { StartScreen, Playing };
-
 enum class GameMode { SinglePlayer, MultiPlayer, None };
-
 
 class Game
 {
@@ -32,7 +21,7 @@ public:
 	bool Initialize();
 	void LoadBackground();
 	void RunLoop();
-	void Shutdown();
+	~Game();
 private:
 	void ProcessInput();
 	void UpdateGame();
@@ -48,10 +37,7 @@ private:
 	void ProcessBotInput(const Uint8* keyboardState);
 	void ProcessMultiplayerInput(const Uint8* keyboardState);
 	void ProcessSingleplayerInput(const Uint8* keyboardState);
-	void UpdatePaddle(Paddle* paddle, float deltaTime);
 	void UpdateScoreBoard(int firstPlayerScore, int secondPlayerScore = -1);
-	void AddNewBall(Vector2 velocity = Vector2(-200.f, 500.f));
-	void CheckBallCollisionWithWalls(Ball* ball);
 	void ResetGame();
 	void InitializeVariables();
 
@@ -72,7 +58,6 @@ private:
 
 	GameState gameState;
 	GameMode gameMode;
-
 
 	Paddle firstPaddle;
 	Paddle secondPaddle;

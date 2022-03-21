@@ -1,10 +1,9 @@
 #pragma once
 #pragma once
 
+#include <vector>
 #include "SDL/SDL.h"
 #include "Utils.h"
-#include "Ball.h"
-#include <vector>
 
 using namespace std;
 
@@ -21,8 +20,8 @@ public:
 		Vector4 color = Vector4(255, 255, 0, 255)
 	);
 	void Draw(SDL_Renderer* renderer);
-	bool DidCollideWithBall(Ball* ball);
 	static vector<vector<Block>> GenerateBlocks(int blocksAmount, float windowWidth);
+	static void RemoveBlock(vector<Block>* blocks, Block* blockToRemove);
 
 	Vector2 position;
 	float width;

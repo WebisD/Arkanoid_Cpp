@@ -1,11 +1,10 @@
-#include "Game.h"
 #include <iostream>
+#include "Game.h"
 #include "Block.h"
 
 int* windowWidth, * windowHeight;
 Uint32 startTiming, endTiming;
 float secondsElapsed = 0.0f;
-
 
 Game::Game()
 	:window(nullptr)
@@ -265,43 +264,30 @@ void Game::UpdateScoreBoard(int firstPlayerScore, int secondPlayerScore)
 	SDL_SetWindowTitle(window, newTitle.c_str());
 }
 
-void Game::AddNewBall(Vector2 velocity)
-{
-	Ball newBall;
-
-	int randomNumber = Utils::RandNumber(2, 7);
-
-	newBall.position = Vector2(
-		*windowWidth/2 + *windowWidth/randomNumber,
-		*windowHeight/2 + *windowHeight/randomNumber
-	);
-
-	newBall.velocity = velocity;
-
-	balls.push_back(newBall);
-}
-
 void Game::InitializeVariables() {
+	// paddles
 	float paddleWidth = 15.0f;
 	float paddleMargin = 30.0f;
 	firstPaddle = Paddle(Vector2(*windowWidth / 2.0f, *windowHeight - paddleMargin));
 	secondPaddle = Paddle(Vector2(*windowWidth - (paddleMargin + paddleWidth), *windowHeight / 2.0f));
 
-	Vector2 ballPos = Vector2(*windowWidth / 2.f, *windowHeight / 2.f);
-	Vector2 ballVel = Vector2(-200.f, 500.f);
+	// initial ball
 	balls = vector<Ball>();
-	balls.push_back(Ball());
-	balls[0].position = ballPos;
-	balls[0].velocity = ballVel;
-
-	startTiming = SDL_GetTicks();
-
+	Ball initialBall;
+	initialBall.position = Vector2(*windowWidth / 2.f, *windowHeight / 2.f);
+	initialBall.velocity = Vector2(-200.f, 500.f);
+	balls.push_back(initialBall);
+	
+	// score
 	firstPlayerScore = 0;
 	secondPlayerScore = 0;
 
+	// blocks
 	int blocksAmount = 73;
 	blocks = Block::GenerateBlocks(blocksAmount , *windowWidth);
-
+	
+	// SDL
+	startTiming = SDL_GetTicks();
 	SDL_SetWindowTitle(window, "Arkanoid");
 }
 
@@ -337,16 +323,27 @@ void Game::UpdateGame()
 			if (ball.DidCollideWithPaddle(&firstPaddle)) {
 				ball.InvertVelocityOnPaddleCollide(&firstPaddle, false);
 
-				UpdateScoreBoard(++firstPlayerScore);
-
 				if (firstPlayerScore % 3 == 0)
 				{
 					Vector2 newBallVelocity = Vector2(-200.0f, -ball.velocity.y);
-					AddNewBall(newBallVelocity);
+					Ball::AddNewBallToGame(&balls, newBallVelocity, *windowWidth, *windowHeight);
 				}
 			}
 
 			ball.CheckBallCollisionWithWalls(*windowHeight, *windowWidth);
+
+			for (auto& blocksRow : blocks)
+			{
+				for (auto& block : blocksRow)
+				{
+					if (ball.CheckBallCollisionWithBlock(&block))
+					{
+						Block::RemoveBlock(&blocksRow, &block);
+						UpdateScoreBoard(++firstPlayerScore);
+						ball.velocity.y *= -1;
+					}
+				}
+			}
 
 			for (auto& collidedBall : balls)
 				ball.CheckCollisionWithAnotherBall(&collidedBall);
@@ -401,10 +398,6 @@ void Game::GenerateOutput()
 		secondPaddle.Draw(renderer);
 	}
 
-	
-	for (auto& ball : balls) 
-		ball.Draw(renderer);
-	
 	for (auto& blockRow : blocks)
 	{
 		for (auto& block : blockRow)
@@ -413,11 +406,13 @@ void Game::GenerateOutput()
 		}
 	}
 
+	for (auto& ball : balls)
+		ball.Draw(renderer);
+
 	SDL_RenderPresent(renderer);
 }
 
-
-void Game::Shutdown()
+Game::~Game()
 {
 	SDL_FreeSurface(menuSurface);
 	SDL_FreeSurface(screenSurface);

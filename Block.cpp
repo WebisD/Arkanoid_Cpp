@@ -1,5 +1,5 @@
-#include "Block.h"
 #include <math.h>
+#include "Block.h"
 
 Block::Block(
 	Vector2 position,
@@ -23,7 +23,6 @@ void Block::Draw(SDL_Renderer* renderer) {
 		color.z
 	);
 
-
 	SDL_Rect block{
 		static_cast<int>(position.x),
 		static_cast<int>(position.y),
@@ -34,21 +33,9 @@ void Block::Draw(SDL_Renderer* renderer) {
 	SDL_RenderFillRect(renderer, &block);
 }
 
-bool Block::DidCollideWithBall(Ball* ball)
-{
-	const bool hasCollided = position.x <= ball->position.x + ball->radius &&
-		position.x + width >= ball->position.x &&
-		position.y <= ball->position.y + ball->radius &&
-		position.y + height >= ball->position.y;
-
-	if (hasCollided)
-		SDL_Log("Bloco colidiu com bola");
-
-	return hasCollided;
-}
 vector<vector<Block>> Block::GenerateBlocks(int blocksAmount, float windowWidth)
 {
-	float topMargin = 40.0f;
+	float topMargin = 80.0f;
 	
 	int blocksByRow = windowWidth / blocksAmount;
 	float blockWidth = windowWidth / blocksByRow;
@@ -65,7 +52,7 @@ vector<vector<Block>> Block::GenerateBlocks(int blocksAmount, float windowWidth)
 		{
 			float rowsAmount = blocks.size();
 			float positionX = 0.0f;
-			float positionY = rowsAmount * (defaultBlockHeight+ gapBetweenBlocks)*2;
+			float positionY = topMargin + rowsAmount * (defaultBlockHeight + gapBetweenBlocks) *2;
 
 			if (!row.empty())
 			{
@@ -83,5 +70,16 @@ vector<vector<Block>> Block::GenerateBlocks(int blocksAmount, float windowWidth)
 	}
 
 	return blocks;
+}
+
+void Block::RemoveBlock(vector<Block>* blocks, Block* blockToRemove)
+{
+	int it = 0;
+	for(auto& block : *blocks)
+	{
+		if (&block == blockToRemove)
+			blocks->erase(blocks->begin() + it);
+		it++;
+	}
 }
 

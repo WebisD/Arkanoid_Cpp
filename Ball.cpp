@@ -38,8 +38,8 @@ void Ball::Draw(SDL_Renderer* renderer) {
 	SDL_Rect ball{
 		static_cast<int>(position.x),
 		static_cast<int>(position.y),
-		radius,
-		radius
+		static_cast<int>(radius),
+		static_cast<int>(radius)
 	};
 
 
@@ -111,6 +111,15 @@ void Ball::CheckCollisionWithAnotherBall(Ball* ball)
 	}
 }
 
+
+bool Ball::CheckBallCollisionWithBlock(Block* block)
+{
+	return position.x <= block->position.x + block->width &&
+		position.x + radius >= block->position.x &&
+		position.y <= block->position.y + block->height &&
+		position.y + radius >= block->position.y;
+}
+
 void Ball::CheckBallCollisionWithWalls(float windowHeight, float windowWidth)
 {
 	bool hasCollidedWithBottomWall = position.y + radius >= windowHeight;
@@ -124,5 +133,21 @@ void Ball::CheckBallCollisionWithWalls(float windowHeight, float windowWidth)
 
 	if (hasCollidedWithLeftWall || hasCollidedWithRightWall)
 		velocity.x *= -1;
+}
+
+void Ball::AddNewBallToGame(vector<Ball>* balls, Vector2 velocity, int windowWidth, int windowHeight)
+{
+	Ball newBall;
+
+	int randomNumber = Utils::RandNumber(2, 7);
+
+	newBall.position = Vector2(
+		windowWidth / 2 + windowWidth / randomNumber,
+		windowHeight / 2 + windowHeight / randomNumber
+	);
+
+	newBall.velocity = velocity;
+
+	balls->push_back(newBall);
 }
 

@@ -3,7 +3,7 @@
 #include "SDL/SDL.h"
 #include "Utils.h"
 #include "Paddle.h"
-
+#include "Block.h"
 
 class Ball
 {
@@ -19,9 +19,10 @@ public:
 	void Draw(SDL_Renderer* renderer);
 	bool DidCollideWithPaddle(Paddle* paddle);
 	void CheckCollisionWithAnotherBall(Ball* ball);
-	void CheckBallCollisionWithWalls(float windowHeight);
 	void InvertVelocityOnPaddleCollide(Paddle* paddle, bool hasToUpdateSpeed);
 	void CheckBallCollisionWithWalls(float windowHeight, float windowWidth);
+	bool CheckBallCollisionWithBlock(Block* block);
+	static void AddNewBallToGame(vector<Ball>* balls, Vector2 velocity, int windowWidth, int windowHeight);
 
 
 	Vector2 position;

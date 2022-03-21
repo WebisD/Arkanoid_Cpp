@@ -18,15 +18,14 @@ Weverson Pereira da Silva	RA: 22.119.004-4
 
 int main(int argc, char** argv)
 {
-	Game game;
-	bool success = game.Initialize();
+	Game* game = new Game();
+	bool success = game->Initialize();
 
 	if (success)
 	{
-		game.RunLoop();
+		game->RunLoop();
 	}
 
-
-	game.Shutdown();
+	delete game;
 	return 0;
 }
