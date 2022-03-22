@@ -1,16 +1,15 @@
-#pragma once
-#pragma once
-
 #include <vector>
+#include "BaseEntity.h"
 #include "SDL/SDL.h"
 #include "Utils.h"
 
-using namespace std;
+#ifndef _BLOCK_H_
+#define _BLOCK_H_
 
 const float defaultBlockHeight = 8.0f;
 const float defaultBlockWidth = 16.0f;
 
-class Block
+class Block : public BaseEntity
 {
 public:
 	Block(
@@ -19,12 +18,9 @@ public:
 		float height = defaultBlockWidth,
 		Vector4 color = Vector4(255, 255, 0, 255)
 	);
-	void Draw(SDL_Renderer* renderer);
-	static vector<vector<Block>> GenerateBlocks(int blocksAmount, float windowWidth);
-	static void RemoveBlock(vector<Block>* blocks, Block* blockToRemove);
 
-	Vector2 position;
-	float width;
-	float height;
-	Vector4 color;
+	static vector<vector<Block>> GenerateBlocks(int blocksAmount, int windowWidth);
+	static void RemoveBlock(vector<Block>* blocks, Block* blockToRemove);
 };
+
+#endif

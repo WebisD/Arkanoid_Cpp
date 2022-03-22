@@ -1,39 +1,15 @@
 #include <math.h>
 #include "Block.h"
 
-Block::Block(
-	Vector2 position,
-	float width,
-	float height,
-	Vector4 color
-)
-	:position(position),
-	width(width),
-	height(height),
-	color(color)
+Block::Block(Vector2 position, float width, float height, Vector4 color)
 {
+	this->position = position;
+	this->width = width;
+	this->height = height;
+	this->color = color;
 }
 
-void Block::Draw(SDL_Renderer* renderer) {
-	SDL_SetRenderDrawColor(
-		renderer,
-		color.x,
-		color.y,
-		color.w,
-		color.z
-	);
-
-	SDL_Rect block{
-		static_cast<int>(position.x),
-		static_cast<int>(position.y),
-		static_cast<int>(width),
-		static_cast<int>(height)
-	};
-
-	SDL_RenderFillRect(renderer, &block);
-}
-
-vector<vector<Block>> Block::GenerateBlocks(int blocksAmount, float windowWidth)
+vector<vector<Block>> Block::GenerateBlocks(int blocksAmount, int windowWidth)
 {
 	float topMargin = 80.0f;
 	
@@ -52,7 +28,7 @@ vector<vector<Block>> Block::GenerateBlocks(int blocksAmount, float windowWidth)
 		{
 			float rowsAmount = blocks.size();
 			float positionX = 0.0f;
-			float positionY = topMargin + rowsAmount * (defaultBlockHeight + gapBetweenBlocks) *2;
+			float positionY = rowsAmount * (defaultBlockHeight + gapBetweenBlocks) *2;
 
 			if (!row.empty())
 			{
@@ -60,7 +36,7 @@ vector<vector<Block>> Block::GenerateBlocks(int blocksAmount, float windowWidth)
 				positionX = lastBlock.position.x + blockWidth + gapBetweenBlocks;
 			}
 
-			Block newBlock = Block(Vector2(positionX, positionY), blockWidth);
+			Block newBlock = Block(Vector2(positionX, positionY + topMargin), blockWidth);
 			row.push_back(newBlock);
 
 			if (++computedBlocks >= blocksAmount) break;
@@ -82,4 +58,3 @@ void Block::RemoveBlock(vector<Block>* blocks, Block* blockToRemove)
 		it++;
 	}
 }
-

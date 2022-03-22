@@ -8,25 +8,16 @@ Paddle::Paddle(
 	Vector2 direction,
 	Vector4 color
 )
-	:position(position),
-	height(height),
-	width(width),
-	speed(speed),
-	direction(direction),
-	color(color)
 {
-	topLeft = Vector2(
-		position.x,
-		position.y
-	);
-
-	bottomRight = Vector2(
-		position.x + width,
-		position.y + height
-	);
+	this->position = position;
+	this->height = height;
+	this->width = width;
+	this->speed = speed;
+	this->direction = direction;
+	this->color = color;
 }
 
-void Paddle::UpdatePaddle(float deltaTime, float windowHeight, float windowWidth)
+void Paddle::UpdatePaddle(float deltaTime, int windowHeight, int windowWidth)
 {
 	if (direction.x != 0)
 	{
@@ -38,24 +29,4 @@ void Paddle::UpdatePaddle(float deltaTime, float windowHeight, float windowWidth
 		else if (position.x + width > windowWidth)
 			position.x = windowWidth - width;
 	}
-}
-
-void Paddle::Draw(SDL_Renderer* renderer) 
-{
-	SDL_SetRenderDrawColor(
-		renderer,
-		color.x,
-		color.y,
-		color.w,
-		color.z
-	);
-
-	SDL_Rect paddle{
-		static_cast<int>(position.x),
-		static_cast<int>(position.y),
-		static_cast<int>(width),
-		static_cast<int>(height)
-	};
-
-	SDL_RenderFillRect(renderer, &paddle);
 }

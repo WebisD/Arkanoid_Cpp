@@ -12,17 +12,24 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Ball.cpp" />
+    <ClCompile Include="BaseEntity.cpp" />
     <ClCompile Include="Block.cpp" />
-    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameModeContext.cpp" />
+    <ClCompile Include="GameSingleton.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Paddle.cpp" />
+    <ClCompile Include="SinglePlayerStrategy.cpp" />
     <ClCompile Include="Utils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ball.h" />
     <ClInclude Include="Block.h" />
-    <ClInclude Include="Game.h" />
+    <ClInclude Include="BaseEntity.h" />
+    <ClInclude Include="GameModeContext.h" />
+    <ClInclude Include="GameModeStrategy.h" />
+    <ClInclude Include="GameSingleton.h" />
     <ClInclude Include="Paddle.h" />
+    <ClInclude Include="SinglePlayerStrategy.h" />
     <ClInclude Include="Utils.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

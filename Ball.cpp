@@ -2,56 +2,29 @@
 
 Ball::Ball(
 	Vector2 position,
-	float radius,
+	float width,
+	float height,
 	float speed,
 	Vector2 velocity,
 	Vector2 acceleration,
 	Vector4 color
 )
-	:position(position),
-	radius(radius),
-	speed(speed),
-	velocity(velocity),
-	acceleration(acceleration),
-	color(color)
 {
-	topLeft = Vector2(
-		position.x,
-		position.y
-	);
-
-	bottomRight = Vector2(
-		position.x + radius,
-		position.y + radius
-	);
-}
-
-void Ball::Draw(SDL_Renderer* renderer) {
-	SDL_SetRenderDrawColor(
-		renderer,
-		color.x,
-		color.y,
-		color.w,
-		color.z
-	);
-
-	SDL_Rect ball{
-		static_cast<int>(position.x),
-		static_cast<int>(position.y),
-		static_cast<int>(radius),
-		static_cast<int>(radius)
-	};
-
-
-	SDL_RenderFillRect(renderer, &ball);
+	this->position = position;
+	this->speed = speed;
+	this->width = width;
+	this->height = height;
+	this->velocity = velocity;
+	this->acceleration = acceleration;
+	this->color = color;
 }
 
 bool Ball::DidCollideWithPaddle(Paddle* paddle)
 {
 	const bool hasCollided = position.x <= paddle->position.x + paddle->width &&
-		position.x + radius >= paddle->position.x &&
+		position.x + width >= paddle->position.x &&
 		position.y <= paddle->position.y + paddle->height &&
-		position.y + radius >= paddle->position.y;
+		position.y + height >= paddle->position.y;
 
 	if (hasCollided)
 		SDL_Log("Colidiu com raquete");
@@ -62,14 +35,12 @@ bool Ball::DidCollideWithPaddle(Paddle* paddle)
 void Ball::InvertVelocityOnPaddleCollide(Paddle* paddle, bool hasToUpdateSpeed)
 {
 	if (hasToUpdateSpeed)
-	{
 		speed += 0.01f;
-	}
 
 	velocity.x *= -1;
 	
 	#pragma region vertical collision 
-	float topPositionBeforeCollide = (position.y + radius) - velocity.y;
+	float topPositionBeforeCollide = (position.y + height) - velocity.y;
 	float bottomPositionBeforeCollide = position.y - velocity.y;
 
 	bool isTopCollision = topPositionBeforeCollide < paddle->position.y;
@@ -86,21 +57,21 @@ void Ball::CheckCollisionWithAnotherBall(Ball* ball)
 {
 	if (ball == this) return; // prevents compare a ball with itself
 
-	if (position.x <= ball->position.x + ball->radius &&
-		position.x + radius >= ball->position.x &&
-		position.y <= ball->position.y + ball->radius &&
-		position.y + ball->radius >= ball->position.y
+	if (position.x <= ball->position.x + ball->width &&
+		position.x + width >= ball->position.x &&
+		position.y <= ball->position.y + ball->height &&
+		position.y + ball->height >= ball->position.y
 	)
 	{
 		velocity.x *= -1;
 		ball->velocity.x *= -1;
 
 		#pragma region vertical collision 
-		float topPositionBeforeCollide = (position.y + radius) - velocity.y;
+		float topPositionBeforeCollide = (position.y + height) - velocity.y;
 		float bottomPositionBeforeCollide = position.y - velocity.y;
 
 		bool isTopCollision = topPositionBeforeCollide < ball->position.y;
-		bool isBottomCollision = bottomPositionBeforeCollide > ball->position.y + ball->radius;
+		bool isBottomCollision = bottomPositionBeforeCollide > ball->position.y + ball->height;
 
 		if (isTopCollision || isBottomCollision)
 		{
@@ -115,17 +86,17 @@ void Ball::CheckCollisionWithAnotherBall(Ball* ball)
 bool Ball::CheckBallCollisionWithBlock(Block* block)
 {
 	return position.x <= block->position.x + block->width &&
-		position.x + radius >= block->position.x &&
+		position.x + width >= block->position.x &&
 		position.y <= block->position.y + block->height &&
-		position.y + radius >= block->position.y;
+		position.y + height >= block->position.y;
 }
 
 void Ball::CheckBallCollisionWithWalls(float windowHeight, float windowWidth)
 {
-	bool hasCollidedWithBottomWall = position.y + radius >= windowHeight;
+	bool hasCollidedWithBottomWall = position.y + height >= windowHeight;
 	bool hasCollidedWithTopWall = position.y <= 0;
 
-	bool hasCollidedWithRightWall = position.x + radius >= windowWidth;
+	bool hasCollidedWithRightWall = position.x + width >= windowWidth;
 	bool hasCollidedWithLeftWall = position.x <= 0;
 
 	if (hasCollidedWithTopWall || hasCollidedWithBottomWall)
