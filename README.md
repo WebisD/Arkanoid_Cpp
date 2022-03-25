@@ -14,7 +14,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/antuniooh/Relic">
-    <img src="https://raw.githubusercontent.com/WebisD/Arkanoid_Cpp/main/Sprites/arkanoid.bmp" alt="Logo" width="550">
+    <img src="https://raw.githubusercontent.com/WebisD/Arkanoid_Cpp/main/Sprites/Assets/arkanoid.bmp" alt="Logo" width="550">
   </a>
 </p>
 
