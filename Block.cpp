@@ -16,7 +16,7 @@ vector<vector<Block>> Block::GenerateBlocks(int blocksAmount, int windowWidth)
 	int blocksByRow = windowWidth / blocksAmount;
 	float blockWidth = windowWidth / blocksByRow;
 	int numberOfRows = ceil((float)blocksAmount / (float)blocksByRow);
-	float gapBetweenBlocks = 1.0f;
+	float gapBetweenBlocks = 2.0f;
 
 	int computedBlocks = 0;
 
@@ -28,7 +28,7 @@ vector<vector<Block>> Block::GenerateBlocks(int blocksAmount, int windowWidth)
 		{
 			float rowsAmount = blocks.size();
 			float positionX = 0.0f;
-			float positionY = rowsAmount * (defaultBlockHeight + gapBetweenBlocks) *2;
+			float positionY = rowsAmount * (defaultBlockHeight + gapBetweenBlocks);
 
 			if (!row.empty())
 			{

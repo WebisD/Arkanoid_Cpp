@@ -8,7 +8,7 @@
 #ifndef _BLOCK_H_
 #define _BLOCK_H_
 
-const float defaultBlockHeight = 8.0f;
+const float defaultBlockHeight = 16.0f;
 const float defaultBlockWidth = 16.0f;
 
 class Block : public BaseEntity
@@ -16,8 +16,8 @@ class Block : public BaseEntity
 public:
 	Block(
 		Vector2 position = Vector2::Zero(),
-		float width = defaultBlockHeight,
-		float height = defaultBlockWidth,
+		float width = defaultBlockWidth,
+		float height = defaultBlockHeight,
 		Vector4 color = Vector4(255, 255, 0, 255)
 	);
 
