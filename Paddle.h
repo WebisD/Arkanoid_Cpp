@@ -17,9 +17,9 @@ public:
 
 	Paddle(
 		Vector2 position = Vector2::Zero(),
-		float height = 15.f,
+		float height = defaultPaddleHeight,
 		float width = defaultPaddleWidth,
-		float speed = defaultPaddleHeight,
+		float speed = 15.f,
 		Vector2 direction = Vector2::Zero(),
 		Vector4 color = Vector4(3, 77, 45, 255)
 	);
