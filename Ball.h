@@ -18,7 +18,12 @@ public:
 		float speed = 1.f,
 		Vector2 velocity = Vector2::Zero(),
 		Vector2 acceleration = Vector2::Zero(),
-		Vector4 color = Vector4(255, 255, 0, 255)
+		Vector4 color = Vector4(
+			Utils::RandNumber(10,255), 
+			Utils::RandNumber(10, 150), 
+			Utils::RandNumber(25, 200),
+			Utils::RandNumber(30, 125)
+		)
 	);
 
 	virtual void Update(float deltaTime) override;
