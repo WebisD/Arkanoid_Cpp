@@ -37,20 +37,18 @@ void Ball::InvertVelocityOnPaddleCollide(Paddle* paddle, bool hasToUpdateSpeed)
 	if (hasToUpdateSpeed)
 		speed += 0.01f;
 
-	velocity.x *= -1;
-	
 	#pragma region vertical collision 
 	float topPositionBeforeCollide = (position.y + height) - velocity.y;
 	float bottomPositionBeforeCollide = position.y - velocity.y;
 
-	bool isTopCollision = topPositionBeforeCollide < paddle->position.y;
+	bool isTopCollision = topPositionBeforeCollide < paddle->position.y - 0.3;
 	bool isBottomCollision = bottomPositionBeforeCollide > paddle->position.y + paddle->height;
 
 	if (isTopCollision || isBottomCollision)
 	{
 		velocity.y *= -1;
 	}
-	# pragma endregion 
+# pragma endregion 
 }
 
 void Ball::CheckCollisionWithAnotherBall(Ball* ball)
@@ -61,7 +59,7 @@ void Ball::CheckCollisionWithAnotherBall(Ball* ball)
 		position.x + width >= ball->position.x &&
 		position.y <= ball->position.y + ball->height &&
 		position.y + ball->height >= ball->position.y
-	)
+		)
 	{
 		velocity.x *= -1;
 		ball->velocity.x *= -1;
@@ -70,8 +68,8 @@ void Ball::CheckCollisionWithAnotherBall(Ball* ball)
 		float topPositionBeforeCollide = (position.y + height) - velocity.y;
 		float bottomPositionBeforeCollide = position.y - velocity.y;
 
-		bool isTopCollision = topPositionBeforeCollide < ball->position.y;
-		bool isBottomCollision = bottomPositionBeforeCollide > ball->position.y + ball->height;
+		bool isTopCollision = bottomPositionBeforeCollide < ball->position.y;
+		bool isBottomCollision = topPositionBeforeCollide > ball->position.y + ball->height;
 
 		if (isTopCollision || isBottomCollision)
 		{
@@ -93,11 +91,11 @@ bool Ball::CheckBallCollisionWithBlock(Block* block)
 
 void Ball::CheckBallCollisionWithWalls(float windowHeight, float windowWidth)
 {
-	bool hasCollidedWithBottomWall = position.y + height >= windowHeight;
-	bool hasCollidedWithTopWall = position.y <= 0;
+	bool hasCollidedWithBottomWall = position.y + height >= windowHeight - 0.5;
+	bool hasCollidedWithTopWall = position.y <= 0.5;
 
-	bool hasCollidedWithRightWall = position.x + width >= windowWidth;
-	bool hasCollidedWithLeftWall = position.x <= 0;
+	bool hasCollidedWithRightWall = position.x + width >= windowWidth - 0.5;
+	bool hasCollidedWithLeftWall = position.x <= 0.5;
 
 	if (hasCollidedWithTopWall || hasCollidedWithBottomWall)
 		velocity.y *= -1;
@@ -121,4 +119,3 @@ void Ball::AddNewBallToGame(vector<Ball>* balls, Vector2 velocity, int windowWid
 
 	balls->push_back(newBall);
 }
-

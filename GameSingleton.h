@@ -45,7 +45,7 @@ class GameSingleton
 			windowHeight(0),
 			windowWidth(0),
 			gameState(GameState::StartScreen),
-			menuBitmapName("menu.bmp"),
+			menuBitmapName("arkanoid.bmp"),
 			fieldBitmapName("campo.bmp"),
 			firstPaddle(new Paddle()),
 			secondPaddle(new Paddle()),

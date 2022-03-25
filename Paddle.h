@@ -11,7 +11,7 @@ const float defaultPaddleHeight = 15.f;
 class Paddle : public BaseEntity
 {
 public:
-	const float speedFactor = 10;
+	const float speedFactor = 20;
 
 	Paddle(
 		Vector2 position = Vector2::Zero(),

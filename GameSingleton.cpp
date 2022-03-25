@@ -191,7 +191,7 @@ void GameSingleton::ProcessInput()
 
 void GameSingleton::InitializeVariables() {
 	// paddles
-	float paddleMargin = 30.0f;
+	float paddleMargin = 20.0f;
 	firstPaddle->position = Vector2(windowWidth / 2.0f, windowHeight - paddleMargin);
 	secondPaddle->position = Vector2(windowWidth - (paddleMargin + defaultPaddleWidth), windowHeight / 2.0f);
 
