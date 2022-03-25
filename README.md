@@ -1,20 +1,20 @@
 <p align="center">
-  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/henriquevital00/pong-game">
+  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/WebisD/Arkanoid_Cpp">
 
-  <img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/henriquevital00/pong-game">
+  <img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/WebisD/Arkanoid_Cpp">
   
   <a href="https://github.com/henriquevital00/pong-game/commits/master">
-    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/henriquevital00/pong-game">
+    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/WebisD/Arkanoid_Cpp">
   </a>
   
-   <img alt="GitHub" src="https://img.shields.io/github/license/henriquevital00/pong-game">
+   <img alt="GitHub" src="https://img.shields.io/github/license/WebisD/Arkanoid_Cpp">
 </p>
 
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
   <a href="https://github.com/antuniooh/Relic">
-    <img src="https://raw.githubusercontent.com/henriquevital00/pong-game/main/menu.bmp" alt="Logo" width="550">
+    <img src="https://raw.githubusercontent.com/WebisD/Arkanoid_Cpp/main/arkanoid.bmp" alt="Logo" width="550">
   </a>
 </p>
 
@@ -57,11 +57,10 @@ For more details, play the game in your machine.
 ```bash
 
 # Clone the repository
-$ git clone https://github.com/henriquevital00/pong-game.git
+$ git clone https://github.com/WebisD/Arkanoid_Cpp.git
 
 # Access the project folder in your terminal / cmd
-$ cd pong-game
-
+$ cd Arkanoid_Cpp
 # Open in Visual Studio 
 
 ```
