@@ -1,5 +1,6 @@
 #include "Ball.h"
 #include "Utils.h"
+#include <iostream>
 
 Ball::Ball(
 	Vector2 position,
@@ -42,7 +43,7 @@ void Ball::CheckCollisionWithAnotherBall(Ball* ball)
 		ball->velocity.x *= -1;
 		
 		EntitySide collidedSide = Utils::GetCollidedSide(this, ball);
-		
+
 		if (collidedSide == EntitySide::TOP || collidedSide == EntitySide::BOTTOM)
 		{
 			velocity.y *= -1;

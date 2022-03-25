@@ -66,19 +66,26 @@ EntitySide Utils::GetCollidedSide(BaseEntity* entity1, BaseEntity* entity2)
     float bottomPositionBeforeCollide = (entity1->position.y + entity1->height) - entity1->velocity.y;
     float topPositionBeforeCollide = entity1->position.y - entity1->velocity.y;
 
-    bool isTopCollision = topPositionBeforeCollide < entity2->position.y - 0.5;
+    bool isTopCollision = topPositionBeforeCollide < entity2->position.y;
     bool isBottomCollision = bottomPositionBeforeCollide > entity2->position.y + entity2->height;
 
     // horizontal
     float leftPositionBeforeCollide = (entity1->position.x + entity1->width) - entity1->velocity.x;
     float rightPositionBeforeCollide = entity1->position.x - entity1->velocity.x;
 
-    bool isLeftCollision = leftPositionBeforeCollide < entity2->position.x - 0.5;
-    bool isRightCollision = rightPositionBeforeCollide > entity2->position.x + entity2->width;
+    bool isLeftCollision =
+        leftPositionBeforeCollide < entity2->position.x
+        && topPositionBeforeCollide >= entity2->position.y;
 
-    return isTopCollision ? EntitySide::TOP : 
-           isBottomCollision ? EntitySide::BOTTOM :
-           isLeftCollision ? EntitySide::LEFT :
-           isRightCollision ? EntitySide::RIGHT : 
-           EntitySide();
+    bool isRightCollision =
+        rightPositionBeforeCollide > entity2->position.x + entity2->width
+        && topPositionBeforeCollide >= entity2->position.y;
+
+
+    return isLeftCollision ? EntitySide::LEFT :
+           isRightCollision ? EntitySide::RIGHT :
+           isTopCollision ? EntitySide::TOP : 
+           isBottomCollision ? EntitySide::BOTTOM 
+           
+           : EntitySide();
 }

@@ -6,7 +6,7 @@ void SinglePlayerStrategy::UpdateGame(float deltaTime)
 {
 	// paddle
 	game->firstPaddle->Update(deltaTime);
-	game->firstPaddle->CheckWallCollision(game->windowHeight, game->windowHeight);
+	game->firstPaddle->CheckWallCollision(game->windowHeight, game->windowWidth);
 
 	// balls
 	int scoreToCloneBall = 10;
