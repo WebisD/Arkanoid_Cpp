@@ -24,9 +24,9 @@ void Ball::InvertVelocityOnPaddleCollide(Paddle* paddle, bool hasToUpdateSpeed)
 {
 	if (hasToUpdateSpeed) speed += 0.01f;
 	
-	EntitySide collidedSize = Utils::GetCollidedSide(this, paddle);
+	EntitySide collidedSide = Utils::GetCollidedSide(this, paddle);
 
-	if (collidedSize == EntitySide::TOP || collidedSize == EntitySide::BOTTOM)
+	if (collidedSide == EntitySide::TOP || collidedSide == EntitySide::BOTTOM)
 		velocity.y *= -1;
 	else
 		velocity.x *= -1;
@@ -41,9 +41,9 @@ void Ball::CheckCollisionWithAnotherBall(Ball* ball)
 		velocity.x *= -1;
 		ball->velocity.x *= -1;
 		
-		EntitySide collidedSize = Utils::GetCollidedSide(this, ball);
+		EntitySide collidedSide = Utils::GetCollidedSide(this, ball);
 		
-		if (collidedSize == EntitySide::TOP || collidedSize == EntitySide::BOTTOM)
+		if (collidedSide == EntitySide::TOP || collidedSide == EntitySide::BOTTOM)
 		{
 			velocity.y *= -1;
 			ball->velocity.y *= -1;
