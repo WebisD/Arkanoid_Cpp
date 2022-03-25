@@ -57,11 +57,10 @@ For more details, play the game in your machine.
 ```bash
 
 # Clone the repository
-$ git clone https://github.com/henriquevital00/pong-game.git
+$ git clone https://github.com/WebisD/Arkanoid_Cpp.git
 
 # Access the project folder in your terminal / cmd
-$ cd pong-game
-
+$ cd Arkanoid_Cpp
 # Open in Visual Studio 
 
 ```
