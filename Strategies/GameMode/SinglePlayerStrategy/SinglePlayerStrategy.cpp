@@ -1,6 +1,6 @@
 #pragma once
 #include "SinglePlayerStrategy.h"
-#include "GameSingleton.h"
+#include "../../../Game/GameSingleton.h"
 
 void SinglePlayerStrategy::UpdateGame(float deltaTime)
 {

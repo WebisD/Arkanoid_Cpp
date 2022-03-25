@@ -1,6 +1,6 @@
 #pragma once
 
-#include "GameModeStrategy.h"
+#include "../GameModeStrategy/GameModeStrategy.h"
 
 #ifndef _SPSTRATEGY_H_
 #define _SPSTRATEGY_H_

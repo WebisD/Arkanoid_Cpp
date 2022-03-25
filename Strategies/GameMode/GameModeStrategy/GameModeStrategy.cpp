@@ -1,5 +1,5 @@
 #include "GameModeStrategy.h"
-#include "GameSingleton.h"
+#include "../../../Game/GameSingleton.h"
 
 GameModeStrategy::GameModeStrategy() 
 {

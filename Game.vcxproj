@@ -11,29 +11,29 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Ball.cpp" />
-    <ClCompile Include="BaseEntity.cpp" />
-    <ClCompile Include="SpriteManager.cpp" />
-    <ClCompile Include="Block.cpp" />
-    <ClCompile Include="GameModeContext.cpp" />
-    <ClCompile Include="GameModeStrategy.cpp" />
-    <ClCompile Include="GameSingleton.cpp" />
+    <ClCompile Include="Entities\Ball\Ball.cpp" />
+    <ClCompile Include="Entities\BaseEntity\BaseEntity.cpp" />
+    <ClCompile Include="Entities\Block\Block.cpp" />
+    <ClCompile Include="Entities\Paddle\Paddle.cpp" />
+    <ClCompile Include="Game\GameSingleton.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="Paddle.cpp" />
-    <ClCompile Include="SinglePlayerStrategy.cpp" />
-    <ClCompile Include="Utils.cpp" />
+    <ClCompile Include="Sprites\SpritesManager\SpriteManager.cpp" />
+    <ClCompile Include="Strategies\GameMode\GameModeContext\GameModeContext.cpp" />
+    <ClCompile Include="Strategies\GameMode\GameModeStrategy\GameModeStrategy.cpp" />
+    <ClCompile Include="Strategies\GameMode\SinglePlayerStrategy\SinglePlayerStrategy.cpp" />
+    <ClCompile Include="Utils\Utils.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Ball.h" />
-    <ClInclude Include="Block.h" />
-    <ClInclude Include="BaseEntity.h" />
-    <ClInclude Include="GameModeContext.h" />
-    <ClInclude Include="GameModeStrategy.h" />
-    <ClInclude Include="GameSingleton.h" />
-    <ClInclude Include="Paddle.h" />
-    <ClInclude Include="SinglePlayerStrategy.h" />
-    <ClInclude Include="SpriteManager.h" />
-    <ClInclude Include="Utils.h" />
+    <ClInclude Include="Entities\Ball\Ball.h" />
+    <ClInclude Include="Entities\BaseEntity\BaseEntity.h" />
+    <ClInclude Include="Entities\Block\Block.h" />
+    <ClInclude Include="Entities\Paddle\Paddle.h" />
+    <ClInclude Include="Game\GameSingleton.h" />
+    <ClInclude Include="Sprites\SpritesManager\SpriteManager.h" />
+    <ClInclude Include="Strategies\GameMode\GameModeContext\GameModeContext.h" />
+    <ClInclude Include="Strategies\GameMode\GameModeStrategy\GameModeStrategy.h" />
+    <ClInclude Include="Strategies\GameMode\SinglePlayerStrategy\SinglePlayerStrategy.h" />
+    <ClInclude Include="Utils\Utils.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{BC508D87-495F-4554-932D-DD68388B63CC}</ProjectGuid>
@@ -45,7 +45,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">

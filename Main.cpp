@@ -6,7 +6,7 @@ João Vitor Dias dos Santos	            RA: 22.119.006-9
 Weverson Pereira da Silva	            RA: 22.119.004-4
 */
 
-#include "GameSingleton.h"
+#include "Game/GameSingleton.h"
 
 int main(int argc, char** argv)
 {

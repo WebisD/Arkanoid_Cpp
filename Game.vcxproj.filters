@@ -1,56 +1,112 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    <Filter Include="Strategies">
+      <UniqueIdentifier>{06bb7518-a404-43bf-b37d-dffae2b22fe9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Strategies\GameMode">
+      <UniqueIdentifier>{59a0e212-c729-4452-b0cb-6be8c944857b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Strategies\GameMode\GameModeContext">
+      <UniqueIdentifier>{92d2bb84-7460-4843-8ab0-23e976370a94}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Strategies\GameMode\GameModeStrategy">
+      <UniqueIdentifier>{88008653-36fd-431d-b05d-f7fc974650d1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Strategies\GameMode\SinglePlayerStrategy">
+      <UniqueIdentifier>{35d83cb5-8169-4ba0-a666-d2a52d90f300}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Entities">
+      <UniqueIdentifier>{64b86076-6196-48a4-b3e4-9e8644d9d8e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Entities\Ball">
+      <UniqueIdentifier>{332d5841-8716-4e78-be14-4cdbae6fcfec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Entities\BaseEntity">
+      <UniqueIdentifier>{dce81ac7-684d-45b9-9b74-7b9c66e6a22a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Entities\Paddle">
+      <UniqueIdentifier>{302b1ac3-61a0-4c8b-91a9-287d187099c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Entities\Block">
+      <UniqueIdentifier>{104c7fa4-37f3-448f-92cb-827b456e4b54}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game">
+      <UniqueIdentifier>{7df5f0b5-195c-4a23-8b2d-5b42918a5f17}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utils">
+      <UniqueIdentifier>{473bd7a6-b908-44c5-8dac-c1d4e8fe1e79}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sprites">
+      <UniqueIdentifier>{ccfe2e59-bcb6-4779-bdef-901efd1affd6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sprites\SpritesManager">
+      <UniqueIdentifier>{b47a2b4f-5314-47dd-ba39-1109d08e7460}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Main.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Entities\Ball\Ball.cpp">
+      <Filter>Entities\Ball</Filter>
     </ClCompile>
-    <ClCompile Include="Ball.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Entities\BaseEntity\BaseEntity.cpp">
+      <Filter>Entities\BaseEntity</Filter>
     </ClCompile>
-    <ClCompile Include="Paddle.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Entities\Block\Block.cpp">
+      <Filter>Entities\Block</Filter>
     </ClCompile>
-    <ClCompile Include="Utils.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Entities\Paddle\Paddle.cpp">
+      <Filter>Entities\Paddle</Filter>
     </ClCompile>
-    <ClCompile Include="Block.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Game\GameSingleton.cpp">
+      <Filter>Game</Filter>
     </ClCompile>
-    <ClCompile Include="BaseEntity.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Utils\Utils.cpp">
+      <Filter>Utils</Filter>
     </ClCompile>
-    <ClCompile Include="GameSingleton.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Sprites\SpritesManager\SpriteManager.cpp">
+      <Filter>Sprites\SpritesManager</Filter>
     </ClCompile>
-    <ClCompile Include="SinglePlayerStrategy.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Strategies\GameMode\GameModeContext\GameModeContext.cpp">
+      <Filter>Strategies\GameMode\GameModeContext</Filter>
     </ClCompile>
-    <ClCompile Include="GameModeContext.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Strategies\GameMode\SinglePlayerStrategy\SinglePlayerStrategy.cpp">
+      <Filter>Strategies\GameMode\SinglePlayerStrategy</Filter>
     </ClCompile>
-    <ClCompile Include="GameModeStrategy.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SpriteManager.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Strategies\GameMode\GameModeStrategy\GameModeStrategy.cpp">
+      <Filter>Strategies\GameMode\GameModeStrategy</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Ball.h" />
-    <ClInclude Include="Paddle.h" />
-    <ClInclude Include="Utils.h" />
-    <ClInclude Include="Block.h" />
-    <ClInclude Include="BaseEntity.h" />
-    <ClInclude Include="GameModeStrategy.h" />
-    <ClInclude Include="GameSingleton.h" />
-    <ClInclude Include="SinglePlayerStrategy.h" />
-    <ClInclude Include="GameModeContext.h" />
-    <ClInclude Include="SpriteManager.h" />
+    <ClInclude Include="Entities\Ball\Ball.h">
+      <Filter>Entities\Ball</Filter>
+    </ClInclude>
+    <ClInclude Include="Entities\BaseEntity\BaseEntity.h">
+      <Filter>Entities\BaseEntity</Filter>
+    </ClInclude>
+    <ClInclude Include="Entities\Block\Block.h">
+      <Filter>Entities\Block</Filter>
+    </ClInclude>
+    <ClInclude Include="Entities\Paddle\Paddle.h">
+      <Filter>Entities\Paddle</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameSingleton.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils\Utils.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Sprites\SpritesManager\SpriteManager.h">
+      <Filter>Sprites\SpritesManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Strategies\GameMode\GameModeContext\GameModeContext.h">
+      <Filter>Strategies\GameMode\GameModeContext</Filter>
+    </ClInclude>
+    <ClInclude Include="Strategies\GameMode\SinglePlayerStrategy\SinglePlayerStrategy.h">
+      <Filter>Strategies\GameMode\SinglePlayerStrategy</Filter>
+    </ClInclude>
+    <ClInclude Include="Strategies\GameMode\GameModeStrategy\GameModeStrategy.h">
+      <Filter>Strategies\GameMode\GameModeStrategy</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -2,7 +2,7 @@
 
 #include <SDL/SDL_stdinc.h>
 #include <SDL/SDL_render.h>
-#include "GameModeStrategy.h"
+#include "../GameModeStrategy//GameModeStrategy.h"
 
 #ifndef _GAMEMODECTX_H_
 #define _GAMEMODECTX_H_

@@ -1,5 +1,5 @@
-#include "SpriteManager.h"
 #include <SDL/SDL_log.h>
+#include "SpriteManager.h"
 
 using namespace std;
 

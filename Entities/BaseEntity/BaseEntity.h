@@ -1,7 +1,7 @@
 #pragma once
 
 #include "SDL/SDL.h"
-#include "Utils.h"
+#include "../../Utils/Utils.h"
 
 #ifndef _BASEENTITY_H_
 #define _BASEENTITY_H_

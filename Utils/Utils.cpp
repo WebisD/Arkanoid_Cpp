@@ -1,5 +1,5 @@
 #include "Utils.h"
-#include "BaseEntity.h"
+#include "../Entities/BaseEntity/BaseEntity.h"
 
 Vector2::Vector2(float x, float y) :x(x), y(y) {}
 
