@@ -19,10 +19,10 @@ public:
 		Vector2 velocity = Vector2::Zero(),
 		Vector2 acceleration = Vector2::Zero(),
 		Vector4 color = Vector4(
-			Utils::RandNumber(10,255), 
-			Utils::RandNumber(10, 150), 
-			Utils::RandNumber(25, 200),
-			Utils::RandNumber(30, 125)
+			Utils::RandNumber(100,255), 
+			Utils::RandNumber(100, 150), 
+			Utils::RandNumber(80, 200),
+			Utils::RandNumber(90, 125)
 		)
 	);
 
