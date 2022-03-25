@@ -1,8 +1,12 @@
+#pragma once
+
 #include "Paddle.h"
 #include "Ball.h"
 #include "Block.h"
 #include "GameModeContext.h"
-#include "SinglePlayerStrategy.h"
+
+#ifndef _GAMESINGLETON_
+#define _GAMESINGLETON_
 
 enum class GameState { StartScreen, Playing };
 
@@ -13,17 +17,15 @@ class GameSingleton
 
 		Paddle* firstPaddle;
 		Paddle* secondPaddle;
+		int firstPlayerScore, secondPlayerScore;
+
 		vector<Ball> balls;
 		vector<vector<Block>> blocks;
 		
-		int firstPlayerScore, secondPlayerScore;
-		
 		SDL_Window* window;
-		int windowHeight;
-		int windowWidth;
+		float windowHeight, windowWidth;
 		
 		bool Initialize();
-		void LoadBackground();
 		void RunLoop();
 		void Shutdown();
 
@@ -45,40 +47,38 @@ class GameSingleton
 			windowHeight(0),
 			windowWidth(0),
 			gameState(GameState::StartScreen),
-			menuBitmapName("arkanoid.bmp"),
-			fieldBitmapName("campo.bmp"),
 			firstPaddle(new Paddle()),
 			secondPaddle(new Paddle()),
 			gameModeCtx(nullptr)
 		{};
 
-		void ProcessInput();
+		void InitializeEntities();
+		
+		void LoadBackground();
+
 		void UpdateGame();
-		void GenerateOutput();
-		void ProcessMenuInput(const Uint8* keyboardState);
 		void ResetGame();
-		void InitializeVariables();
-		bool LoadBitmap(
-			std::string bitmapFileName,
-			SDL_Surface* surface,
-			SDL_Texture* texture,
-			SDL_Rect* screenDest,
-			SDL_Renderer* renderer
-		);
+
+		void ProcessInput();
+		void ProcessMenuInput(const Uint8* keyboardState);
+		
+		void GenerateOutput();
 		
 		//surfaces
 		SDL_Surface* screenSurface = nullptr;
 		SDL_Surface* menuSurface = nullptr;
 		SDL_Texture* menuTexture = nullptr;
 
-		SDL_Surface* fieldSurface = nullptr;
-		SDL_Texture* fieldTexture = nullptr;
+		SDL_Surface* galaxySurface = nullptr;
+		SDL_Texture* galaxyTexture = nullptr;
 
 		// render
 		SDL_Renderer* renderer = nullptr;
 		Uint32 ticksCount;
 
-		// Assets
-		std::string menuBitmapName;
-		std::string fieldBitmapName;
+		// background assets
+		string menuSpriteFileName = "arkanoid.bmp";
+		string galaxySpriteFileName = "galaxy.bmp";
 	};
+
+#endif

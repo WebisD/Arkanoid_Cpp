@@ -1,17 +1,17 @@
-#include "GameSingleton.h"
+#pragma once
 #include "SinglePlayerStrategy.h"
+#include "GameSingleton.h"
 
 void SinglePlayerStrategy::UpdateGame(float deltaTime)
 {
-	GameSingleton* game = GameSingleton::GetInstance();
+	// paddle
+	game->firstPaddle->Update(deltaTime);
+	game->firstPaddle->CheckWallCollision(game->windowHeight, game->windowHeight);
 
-	game->firstPaddle->UpdatePaddle(deltaTime, game->windowHeight, game->windowWidth);
-
+	// balls
+	int scoreToCloneBall = 10;
 	for (auto& ball : game->balls)
 	{
-		ball.position.x += ball.velocity.x * ball.speed * deltaTime;
-		ball.position.y += ball.velocity.y * ball.speed * deltaTime;
-
 		if (ball.DidCollideWithPaddle(game->firstPaddle))
 			ball.InvertVelocityOnPaddleCollide(game->firstPaddle, false);
 
@@ -25,7 +25,7 @@ void SinglePlayerStrategy::UpdateGame(float deltaTime)
 				{
 					Block::RemoveBlock(&blocksRow, &block);
 
-					if (++game->firstPlayerScore % 10 == 0)
+					if (++game->firstPlayerScore % scoreToCloneBall == 0)
 					{
 						Vector2 newBallVelocity = Vector2(-200.0f, -ball.velocity.y);
 						Ball::AddNewBallToGame(&game->balls, newBallVelocity, game->windowWidth, game->windowHeight);
@@ -36,25 +36,24 @@ void SinglePlayerStrategy::UpdateGame(float deltaTime)
 					ball.velocity.y *= -1;
 				}
 			}
+		
 		}
 
 		for (auto& collidedBall : game->balls)
 			ball.CheckCollisionWithAnotherBall(&collidedBall);
 	}
 
+	// TO DO: verificar pq o update dá erro no for de cima
+	for (auto& ball : game->balls) ball.Update(deltaTime); 
 }
 
 void SinglePlayerStrategy::GeneratePlayersOutput(SDL_Renderer* renderer)
 {
-	GameSingleton* game = GameSingleton::GetInstance();
-
 	game->firstPaddle->Draw(renderer);
 }
 
 void SinglePlayerStrategy::ProcessInput(const Uint8* keyboardState)
 {
-	GameSingleton* game = GameSingleton::GetInstance();
-
 	game->firstPaddle->direction.x = 0;
 
 	if (keyboardState[SDL_SCANCODE_A])
@@ -66,8 +65,6 @@ void SinglePlayerStrategy::ProcessInput(const Uint8* keyboardState)
 
 void SinglePlayerStrategy::UpdateScoreBoard()
 {
-	GameSingleton* game = GameSingleton::GetInstance();
-
 	string newTitle = "Jogador 01: " + to_string(game->firstPlayerScore);
 	SDL_SetWindowTitle(game->window, newTitle.c_str());
 }

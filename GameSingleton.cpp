@@ -1,4 +1,6 @@
 #include "GameSingleton.h"
+#include "SpriteManager.h"
+#include "SinglePlayerStrategy.h"
 
 Uint32 startTiming, endTiming;
 float secondsElapsed = 0.0f;
@@ -68,59 +70,29 @@ bool GameSingleton::Initialize()
 		return false;
 	}
 
-	screenSurface = SDL_GetWindowSurface(window);
 
-	SDL_Log("Loading background...");
 	LoadBackground();
-	InitializeVariables();
+	InitializeEntities();
 
-	return true;
-}
-
-bool GameSingleton::LoadBitmap(
-	std::string bitmapFileName,
-	SDL_Surface* surface,
-	SDL_Texture* texture,
-	SDL_Rect* screenDest,
-	SDL_Renderer* renderer
-) {
-	surface = SDL_LoadBMP(bitmapFileName.c_str());
-
-	if (surface == NULL)
-	{
-		SDL_Log("Unable to load image %s! SDL Error: %s\n", bitmapFileName.c_str(), SDL_GetError());
-		return false;
-	}
-
-	int blitResult = SDL_BlitScaled(surface, NULL, screenSurface, screenDest);
-
-	if (blitResult < 0) 
-	{
-		SDL_Log("Unable to blit image %s onto surface! SDL Error: %s\n", bitmapFileName.c_str(), SDL_GetError());
-		return false;
-	}
-
-	texture = SDL_CreateTextureFromSurface(renderer, surface);
-
-	if (texture == 0)
-	{
-		SDL_Log("Unable to create texture from surface of image %s! SDL Error: %s\n", bitmapFileName.c_str(), SDL_GetError());
-		return false;
-	}
+	startTiming = SDL_GetTicks();
+	SDL_SetWindowTitle(window, "Arkanoid");
 
 	return true;
 }
 
 void GameSingleton::LoadBackground()
 {
-	SDL_Rect screenDest;
-	screenDest.x = 0;
-	screenDest.y = 0;
-	screenDest.w = windowWidth;
-	screenDest.h = windowHeight;
+	SDL_Log("Loading background...");
 
-	SDL_Log("Loading %s...", menuBitmapName.c_str());
-	LoadBitmap(menuBitmapName, menuSurface, menuTexture, &screenDest, renderer);
+	galaxySurface = SDL_LoadBMP(galaxySpriteFileName.c_str());
+	galaxyTexture = SDL_CreateTextureFromSurface(renderer, galaxySurface);
+
+	SDL_Rect screenDest = { 0, 0, windowWidth, windowHeight };
+
+	screenSurface = SDL_GetWindowSurface(window);
+
+	SDL_Log("Loading %s...", menuSpriteFileName.c_str());
+	SpriteManager::LoadSprite(menuSpriteFileName, screenSurface, menuSurface, menuTexture, &screenDest, renderer);
 
 	SDL_RenderCopy(renderer, menuTexture, NULL, NULL);
 	SDL_RenderPresent(renderer);
@@ -130,9 +102,6 @@ void GameSingleton::LoadBackground()
 
 void GameSingleton::RunLoop()
 {
-	fieldSurface = SDL_LoadBMP("campo.bmp");
-	fieldTexture = SDL_CreateTextureFromSurface(renderer, fieldSurface);
-
 	while (isRunning)
 	{
 		ProcessInput();
@@ -189,7 +158,7 @@ void GameSingleton::ProcessInput()
 		isRunning = false;
 }
 
-void GameSingleton::InitializeVariables() {
+void GameSingleton::InitializeEntities() {
 	// paddles
 	float paddleMargin = 20.0f;
 	firstPaddle->position = Vector2(windowWidth / 2.0f, windowHeight - paddleMargin);
@@ -205,16 +174,12 @@ void GameSingleton::InitializeVariables() {
 	// blocks
 	int blocksAmount = 75;
 	blocks = Block::GenerateBlocks(blocksAmount, windowWidth);
-
-	// SDL
-	startTiming = SDL_GetTicks();
-	SDL_SetWindowTitle(window, "Arkanoid");
 }
 
 void GameSingleton::ResetGame()
 {
 	gameState = GameState::StartScreen;
-	InitializeVariables();
+	InitializeEntities();
 	GameSingleton::LoadBackground();
 }
 
@@ -239,7 +204,7 @@ void GameSingleton::GenerateOutput()
 {
 	SDL_SetRenderDrawColor(renderer, 0x00, 0x00, 0x00, 0x00);
 	SDL_RenderClear(renderer);
-	SDL_RenderCopy(renderer, fieldTexture, NULL, NULL);
+	SDL_RenderCopy(renderer, galaxyTexture, NULL, NULL);
 
 	gameModeCtx->GeneratePlayersOutput(renderer);
 
@@ -263,7 +228,7 @@ void GameSingleton::Shutdown()
 	delete gameModeCtx;
 	SDL_FreeSurface(menuSurface);
 	SDL_FreeSurface(screenSurface);
-	SDL_FreeSurface(fieldSurface);
+	SDL_FreeSurface(galaxySurface);
 	SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(window);
 	SDL_Quit();

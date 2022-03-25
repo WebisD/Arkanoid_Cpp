@@ -1,3 +1,5 @@
+#pragma once
+
 #include <vector>
 #include "BaseEntity.h"
 #include "SDL/SDL.h"
@@ -21,6 +23,8 @@ public:
 
 	static vector<vector<Block>> GenerateBlocks(int blocksAmount, int windowWidth);
 	static void RemoveBlock(vector<Block>* blocks, Block* blockToRemove);
+
+	virtual void Update(float deltaTime) override {};
 };
 
 #endif

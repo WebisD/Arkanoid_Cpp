@@ -1,5 +1,7 @@
-#include "BaseEntity.h"
+#pragma once
+
 #include "SDL/SDL.h"
+#include "BaseEntity.h"
 #include "Utils.h"
 
 #ifndef _PADDLE_H_
@@ -22,7 +24,9 @@ public:
 		Vector4 color = Vector4(3, 77, 45, 255)
 	);
 
-	void UpdatePaddle(float deltaTime, int windowHeight, int windowWidth);
+	virtual void Update(float deltaTime) override;
+
+	void CheckWallCollision(float windowHeight, float windowwIDTH);
 };
 
 #endif

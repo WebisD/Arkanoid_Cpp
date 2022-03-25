@@ -34,6 +34,12 @@
     <ClCompile Include="GameModeContext.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="GameModeStrategy.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SpriteManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ball.h" />
@@ -45,5 +51,6 @@
     <ClInclude Include="GameSingleton.h" />
     <ClInclude Include="SinglePlayerStrategy.h" />
     <ClInclude Include="GameModeContext.h" />
+    <ClInclude Include="SpriteManager.h" />
   </ItemGroup>
 </Project>

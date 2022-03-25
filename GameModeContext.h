@@ -1,3 +1,5 @@
+#pragma once
+
 #include <SDL/SDL_stdinc.h>
 #include <SDL/SDL_render.h>
 #include "GameModeStrategy.h"

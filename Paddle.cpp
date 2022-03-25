@@ -17,16 +17,19 @@ Paddle::Paddle(
 	this->color = color;
 }
 
-void Paddle::UpdatePaddle(float deltaTime, int windowHeight, int windowWidth)
+void Paddle::Update(float deltaTime)
 {
 	if (direction.x != 0)
 	{
 		position.x += direction.x * speed * speedFactor * deltaTime;
-
-		if (position.x < 0)
-			position.x = 0;
-
-		else if (position.x + width > windowWidth)
-			position.x = windowWidth - width;
 	}
+}
+
+void Paddle::CheckWallCollision(float windowHeight, float windowWidth)
+{
+	if (position.x < 0)
+		position.x = 0;
+
+	else if (position.x + width > windowWidth)
+		position.x = windowWidth - width;
 }
