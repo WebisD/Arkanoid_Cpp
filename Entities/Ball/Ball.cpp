@@ -21,16 +21,24 @@ Ball::Ball(
 	this->color = color;
 }
 
-void Ball::InvertVelocityOnPaddleCollide(Paddle* paddle, bool hasToUpdateSpeed)
+void Ball::InvertVelocityOnPaddleCollide(Paddle* paddle, EntitySide positionPaddle, bool hasToUpdateSpeed)
 {
 	if (hasToUpdateSpeed) speed += 0.01f;
 	
 	EntitySide collidedSide = Utils::GetCollidedSide(this, paddle);
 
-	if (collidedSide == EntitySide::TOP || collidedSide == EntitySide::BOTTOM)
+	if (positionPaddle == EntitySide::BOTTOM) {
+		if (collidedSide == EntitySide::TOP || collidedSide == EntitySide::BOTTOM)
 		velocity.y *= -1;
-	else
-		velocity.x *= -1;
+		else
+			velocity.x *= -1;
+	}
+	else {
+		if(collidedSide == EntitySide::TOP || collidedSide == EntitySide::BOTTOM)
+			velocity.x *= -1;
+		else
+			velocity.y *= -1;
+	}
 }
 
 void Ball::CheckCollisionWithAnotherBall(Ball* ball)

@@ -11,7 +11,7 @@ Block::Block(Vector2 position, float width, float height, Vector4 color)
 
 vector<vector<Block>> Block::GenerateBlocks(int blocksAmount, int windowWidth)
 {
-	float topMargin = 80.0f;
+	float topMargin = 120.0f;
 	
 	int blocksByRow = windowWidth / blocksAmount;
 	float blockWidth = windowWidth / blocksByRow;

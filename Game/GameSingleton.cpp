@@ -1,6 +1,7 @@
 #include "GameSingleton.h"
 #include "../Sprites/SpritesManager/SpriteManager.h"
 #include "../Strategies/GameMode/SinglePlayerStrategy/SinglePlayerStrategy.h"
+#include "../Strategies/GameMode/MultiplayerStrategy/MultiplayerStrategy.h"
 
 Uint32 startTiming, endTiming;
 float secondsElapsed = 0.0f;
@@ -13,6 +14,7 @@ GameSingleton* GameSingleton::GetInstance()
         instance = new GameSingleton();
 
     return instance;
+
 }
 
 bool GameSingleton::Initialize()
@@ -120,11 +122,11 @@ void GameSingleton::ProcessMenuInput(const Uint8* keyboardState)
 		gameModeCtx = new GameModeContext(new SinglePlayerStrategy());
 		gameState = GameState::Playing;
 	}
-	/*if (keyboardState[SDL_SCANCODE_2] || keyboardState[SDL_SCANCODE_KP_2])
+	if (keyboardState[SDL_SCANCODE_2] || keyboardState[SDL_SCANCODE_KP_2])
 	{
-		gameModeCtx = new GameModeContext(new MultiPlayerStrategy());
+		gameModeCtx = new GameModeContext(new MultiplayerStrategy());
 		gameState = GameState::Playing;
-	}*/
+	}
 }
 
 void GameSingleton::ProcessInput()
@@ -162,7 +164,7 @@ void GameSingleton::InitializeEntities() {
 	// paddles
 	float paddleMargin = 20.0f;
 	firstPaddle->position = Vector2(windowWidth / 2.0f, windowHeight - paddleMargin);
-	secondPaddle->position = Vector2(windowWidth - (paddleMargin + defaultPaddleWidth), windowHeight / 2.0f);
+	secondPaddle->position = Vector2(windowWidth - (paddleMargin + defaultPaddleWidth), paddleMargin);
 
 	// initial ball
 	balls = vector<Ball>();
@@ -172,7 +174,7 @@ void GameSingleton::InitializeEntities() {
 	balls.push_back(initialBall);
 
 	// blocks
-	int blocksAmount = 80;
+	int blocksAmount = 60;
 	blocks = Block::GenerateBlocks(blocksAmount, windowWidth);
 }
 
