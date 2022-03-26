@@ -43,6 +43,9 @@
     <Filter Include="Sprites\SpritesManager">
       <UniqueIdentifier>{b47a2b4f-5314-47dd-ba39-1109d08e7460}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Strategies\GameMode\MultiplayerStrategy">
+      <UniqueIdentifier>{0145355b-8c27-4070-8dd5-1f54e25a6fc5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
@@ -76,6 +79,9 @@
     <ClCompile Include="Strategies\GameMode\GameModeStrategy\GameModeStrategy.cpp">
       <Filter>Strategies\GameMode\GameModeStrategy</Filter>
     </ClCompile>
+    <ClCompile Include="Strategies\GameMode\MultiplayerStrategy\MultiplayerStrategy.cpp">
+      <Filter>Strategies\GameMode\MultiplayerStrategy</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Entities\Ball\Ball.h">
@@ -107,6 +113,9 @@
     </ClInclude>
     <ClInclude Include="Strategies\GameMode\GameModeStrategy\GameModeStrategy.h">
       <Filter>Strategies\GameMode\GameModeStrategy</Filter>
+    </ClInclude>
+    <ClInclude Include="Strategies\GameMode\MultiplayerStrategy\MultiplayerStrategy.h">
+      <Filter>Strategies\GameMode\MultiplayerStrategy</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

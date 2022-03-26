@@ -20,6 +20,7 @@
     <ClCompile Include="Sprites\SpritesManager\SpriteManager.cpp" />
     <ClCompile Include="Strategies\GameMode\GameModeContext\GameModeContext.cpp" />
     <ClCompile Include="Strategies\GameMode\GameModeStrategy\GameModeStrategy.cpp" />
+    <ClCompile Include="Strategies\GameMode\MultiplayerStrategy\MultiplayerStrategy.cpp" />
     <ClCompile Include="Strategies\GameMode\SinglePlayerStrategy\SinglePlayerStrategy.cpp" />
     <ClCompile Include="Utils\Utils.cpp" />
   </ItemGroup>
@@ -32,6 +33,7 @@
     <ClInclude Include="Sprites\SpritesManager\SpriteManager.h" />
     <ClInclude Include="Strategies\GameMode\GameModeContext\GameModeContext.h" />
     <ClInclude Include="Strategies\GameMode\GameModeStrategy\GameModeStrategy.h" />
+    <ClInclude Include="Strategies\GameMode\MultiplayerStrategy\MultiplayerStrategy.h" />
     <ClInclude Include="Strategies\GameMode\SinglePlayerStrategy\SinglePlayerStrategy.h" />
     <ClInclude Include="Utils\Utils.h" />
   </ItemGroup>
@@ -45,7 +47,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
