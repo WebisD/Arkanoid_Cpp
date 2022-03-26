@@ -11,6 +11,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Components\Collider2D\Collider2D.cpp" />
+    <ClCompile Include="Components\Component\Component.cpp" />
+    <ClCompile Include="Components\Input\Input.cpp" />
+    <ClCompile Include="Components\Renderer2D\Renderer2D.cpp" />
+    <ClCompile Include="Components\Transform\Transform.cpp" />
     <ClCompile Include="Entities\Ball\Ball.cpp" />
     <ClCompile Include="Entities\BaseEntity\BaseEntity.cpp" />
     <ClCompile Include="Entities\Block\Block.cpp" />
@@ -24,6 +29,11 @@
     <ClCompile Include="Utils\Utils.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Components\Collider2D\Collider2D.h" />
+    <ClInclude Include="Components\Component\Component.h" />
+    <ClInclude Include="Components\Input\Input.h" />
+    <ClInclude Include="Components\Renderer2D\Renderer2D.h" />
+    <ClInclude Include="Components\Transform\Transform.h" />
     <ClInclude Include="Entities\Ball\Ball.h" />
     <ClInclude Include="Entities\BaseEntity\BaseEntity.h" />
     <ClInclude Include="Entities\Block\Block.h" />
@@ -45,7 +55,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">

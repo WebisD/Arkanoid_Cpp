@@ -43,6 +43,24 @@
     <Filter Include="Sprites\SpritesManager">
       <UniqueIdentifier>{b47a2b4f-5314-47dd-ba39-1109d08e7460}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Components">
+      <UniqueIdentifier>{2fb886c8-0381-476d-9826-b0d03f10f661}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Components\Component">
+      <UniqueIdentifier>{c28b87a8-8ce8-43e2-b873-68fea875f3b4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Components\Input">
+      <UniqueIdentifier>{9497d19a-0010-43a7-af5e-9a69f0094bf5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Components\Transform">
+      <UniqueIdentifier>{3e3b2969-da7d-48d7-aeeb-1eed688e63a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Components\Collider2D">
+      <UniqueIdentifier>{51817788-24bf-410f-8497-42d3f0591391}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Components\Renderer2D">
+      <UniqueIdentifier>{2c9f50f3-9c3f-48ed-bc6e-0d3f4b54e85e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
@@ -76,6 +94,21 @@
     <ClCompile Include="Strategies\GameMode\GameModeStrategy\GameModeStrategy.cpp">
       <Filter>Strategies\GameMode\GameModeStrategy</Filter>
     </ClCompile>
+    <ClCompile Include="Components\Component\Component.cpp">
+      <Filter>Components\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\Input\Input.cpp">
+      <Filter>Components\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\Renderer2D\Renderer2D.cpp">
+      <Filter>Components\Renderer2D</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\Transform\Transform.cpp">
+      <Filter>Components\Transform</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\Collider2D\Collider2D.cpp">
+      <Filter>Components\Collider2D</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Entities\Ball\Ball.h">
@@ -107,6 +140,21 @@
     </ClInclude>
     <ClInclude Include="Strategies\GameMode\GameModeStrategy\GameModeStrategy.h">
       <Filter>Strategies\GameMode\GameModeStrategy</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Component\Component.h">
+      <Filter>Components\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Input\Input.h">
+      <Filter>Components\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Renderer2D\Renderer2D.h">
+      <Filter>Components\Renderer2D</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Transform\Transform.h">
+      <Filter>Components\Transform</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Collider2D\Collider2D.h">
+      <Filter>Components\Collider2D</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

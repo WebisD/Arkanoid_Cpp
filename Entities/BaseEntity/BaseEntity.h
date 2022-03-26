@@ -2,6 +2,7 @@
 
 #include "SDL/SDL.h"
 #include "../../Utils/Utils.h"
+#include "../Component/Component.h"
 
 #ifndef _BASEENTITY_H_
 #define _BASEENTITY_H_
@@ -19,8 +20,7 @@ public:
 	float width;
 	float height;
 	float speed;
-
-	void Draw(SDL_Renderer* renderer);
+	vector<Component> components;
 
 	virtual void Update(float deltaTime) = 0;
 };

@@ -19,17 +19,8 @@ Paddle::Paddle(
 
 void Paddle::Update(float deltaTime)
 {
-	if (direction.x != 0)
+	for (auto& component : components)
 	{
-		position.x += direction.x * speed * speedFactor * deltaTime;
+		component.Update();
 	}
-}
-
-void Paddle::CheckWallCollision(float windowHeight, float windowWidth)
-{
-	if (position.x < 0)
-		position.x = 0;
-
-	else if (position.x + width > windowWidth)
-		position.x = windowWidth - width;
 }
