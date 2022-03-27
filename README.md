@@ -71,5 +71,3 @@ $ cd Arkanoid_Cpp
 :-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:
 <img src="https://avatars.githubusercontent.com/u/51217271?v=4" alt="drawing" width="150"/>  |  <img src="https://avatars.githubusercontent.com/u/48650626?v=4" alt="drawing" width="150"/>| <img src="https://avatars.githubusercontent.com/u/56837996?v=4" alt="drawing" width="150"/>  |  <img src="https://avatars.githubusercontent.com/u/63318342?v=4" alt="drawing" width="150"/>| <img src="https://avatars.githubusercontent.com/u/49571908?v=4" alt="drawing" width="150"/>
 22.119.001-0 | 22.119.078-8 | 22.119.077-0 | 22.119.006-9 | 22.119.004-4
-
-
