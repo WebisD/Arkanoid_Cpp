@@ -208,14 +208,14 @@ void GameSingleton::GenerateOutput()
 
 	gameModeCtx->GeneratePlayersOutput(renderer);
 
-	for (auto& ball : balls)
+	/*for (auto& ball : balls)
 		ball.Draw(renderer);
 
 	for (auto& blockRow : blocks)
 	{
 		for (auto& block : blockRow)
 			block.Draw(renderer);
-	}
+	}*/
 
 	SDL_RenderPresent(renderer);
 }
@@ -232,4 +232,9 @@ void GameSingleton::Shutdown()
 	SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(window);
 	SDL_Quit();
+}
+
+
+SDL_Renderer* GameSingleton::GetRenderer() {
+	return renderer;
 }

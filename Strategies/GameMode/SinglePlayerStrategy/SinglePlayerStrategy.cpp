@@ -22,18 +22,18 @@ void SinglePlayerStrategy::UpdateGame(float deltaTime)
 
 void SinglePlayerStrategy::GeneratePlayersOutput(SDL_Renderer* renderer)
 {
-	game->firstPaddle->Draw(renderer);
+	//game->firstPaddle->Draw(renderer);
 }
 
 void SinglePlayerStrategy::ProcessInput(const Uint8* keyboardState)
 {
-	game->firstPaddle->direction.x = 0;
+	/*game->firstPaddle->direction.x = 0;
 
 	if (keyboardState[SDL_SCANCODE_A])
 		game->firstPaddle->direction.x -= 1;
 	
 	if (keyboardState[SDL_SCANCODE_D])
-		game->firstPaddle->direction.x += 1;
+		game->firstPaddle->direction.x += 1;*/
 }
 
 void SinglePlayerStrategy::UpdateScoreBoard()

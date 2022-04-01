@@ -91,6 +91,7 @@
       <AdditionalIncludeDirectories>.\External\SDL\include;.\External\GLEW\include;.\External\SOIL\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
       <ExceptionHandling>Sync</ExceptionHandling>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

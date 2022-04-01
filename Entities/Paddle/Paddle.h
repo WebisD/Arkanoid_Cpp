@@ -3,6 +3,10 @@
 #include "SDL/SDL.h"
 #include "../BaseEntity/BaseEntity.h"
 #include "../../Utils/Utils.h"
+#include "../../Components/Transform/Transform.h"
+#include "../../Components/Renderer2D/Renderer2D.h"
+#include "../../Components/Input/Input.h"
+#include "../../Components/Collider2D/Collider2D.h"
 
 #ifndef _PADDLE_H_
 #define _PADDLE_H_

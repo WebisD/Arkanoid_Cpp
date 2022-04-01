@@ -29,6 +29,8 @@ class GameSingleton
 		void RunLoop();
 		void Shutdown();
 
+		SDL_Renderer* GetRenderer();
+
 	private:
 		static GameSingleton* instance;
 		

@@ -2,7 +2,7 @@
 
 #include "SDL/SDL.h"
 #include "../../Utils/Utils.h"
-#include "../Component/Component.h"
+#include "../../Components/Component/Component.h"
 
 #ifndef _BASEENTITY_H_
 #define _BASEENTITY_H_
