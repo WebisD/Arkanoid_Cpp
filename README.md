@@ -43,7 +43,7 @@
 
 <!-- ABOUT THE PROJECT -->
 ## 💻 About The Project
-Semiannual project of the subject of Game Development, taught at Centro Universitário FEI. It consists of ...
+Semiannual project of the subject of Game Development, taught at Centro Universitário FEI. It consists in a clone of Arkanoid game
 
 For more details, play the game in your machine.
 
